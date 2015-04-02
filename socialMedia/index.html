@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Media Visualization</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>	
+
+    <style>
+        body{
+            font-family:'Open Sans', sans-serif;
+            margin-top: 15px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <script src="scripts/d3.v3.min.js"></script>
+    <script src="scripts/topojson.v1.min.js"></script>
+    <script src="scripts/datamaps.world.min.js"></script>
+    <div>
+        <p id="title" style="font-size: 25pt; padding: 0;margin: 0;text-align: center;">Top 10 Ranked Countries on Social Media</p>
+        <p id="subtitle" style="padding: 0;margin: 0;text-align: center;">(Calculated by social networking sites versus total internet usage)</p>
+    </div>
+    <div id="overall" style="position: absolute; top:100px; left:100px; width: 1000px; height: 450px; visibility: visible;"></div>
+    <div id="facebook" style="position: absolute; top:100px; left:100px;width: 1000px; height: 450px; visibility: hidden;"></div>
+    <div id="twitter" style="position: absolute; top:100px; left:100px;width: 1000px; height: 450px; visibility: hidden;"></div>
+    <div id="youtube" style="position: absolute; top:100px; left:100px;width: 1000px; height: 450px; visibility: hidden; "></div>
+    <div id="linkedin" style="position: absolute; top:100px; left:100px;width: 1000px; height: 450px; visibility: hidden; "></div>    
+    <div id="reddit" style="position: absolute; top:100px; left:100px;width: 1000px; height: 450px; visibility: hidden;"></div>
+    <div id="pinterest" style="position: absolute; top:100px; left:100px;width: 1000px; height: 450px; visibility: hidden;"></div>
+    
+    <div style="position: absolute;top: 550px;">
+        <img src="img/home.png" alt="home icon" height="50" width="50" name="home" onclick="displayMap('home');""/>
+        <img src="img/facebook.png" alt="fb icon" height="50" width="50" name="fb" onclick="displayMap('fb');""/>
+        <img src="img/twitter.png" alt="twitter icon" height="50" width="50" name="twitter" onclick="displayMap('twitter')">
+        <img src="img/youtube.png" alt="youtube icon" height="50" width="50" name="youtube" onclick="displayMap('youtube')">
+        <img src="img/linkedin.png" alt="linkedin icon" height="50" width="50" name="youtube" onclick="displayMap('linkedin')">
+        <img src="img/reddit.png" alt="reddit icon" height="50" width="50" name="reddit" onclick="displayMap('reddit')">
+        <img src="img/pinterest.png" alt="pinterest icon" height="50" width="50" name="pinterest" onclick="displayMap('pinterest')">
+
+    </div>
+    <div style="position: absolute; top: 600px;">
+        <p style="padding: 0;margin-bottom:0;" >Sources</p>
+        <p id="sources" style="padding: 0;margin: 0;">http://readwrite.com/2011/09/30/which_countries_use_social_networks_the_most_study</p>
+    </div>
+    <script>
+       
+        function displayMap(name) {
+            if (name == 'home') {
+                document.getElementById('title').innerHTML="Top 10 Ranked Countries on Social Media";
+                document.getElementById('subtitle').innerHTML="(Calculated by social networking sites versus total internet usage)";
+                document.getElementById('overall').style.visibility = 'visible';
+                document.getElementById('facebook').style.visibility = 'hidden';
+                document.getElementById('twitter').style.visibility = 'hidden';
+                document.getElementById('youtube').style.visibility = 'hidden';                
+                document.getElementById('linkedin').style.visibility = 'hidden';                                
+                document.getElementById('reddit').style.visibility = 'hidden';
+                document.getElementById('pinterest').style.visibility = 'hidden';
+                document.getElementById('sources').innerHTML="http://readwrite.com/2011/09/30/which_countries_use_social_networks_the_most_study";
+            
+            }else if (name == 'fb') {
+                document.getElementById('title').innerHTML="Top 10 Countries with the Most Users on Facebook";
+                document.getElementById('subtitle').innerHTML="";
+                document.getElementById('overall').style.visibility = 'hidden';
+                document.getElementById('facebook').style.visibility = 'visible';
+                document.getElementById('twitter').style.visibility = 'hidden';
+                document.getElementById('youtube').style.visibility = 'hidden';                
+                document.getElementById('linkedin').style.visibility = 'hidden';                                
+                document.getElementById('reddit').style.visibility = 'hidden';
+                document.getElementById('pinterest').style.visibility = 'hidden';
+                document.getElementById('sources').innerHTML="http://www.thecountriesof.com/top-10-countries-with-most-facebook-users-in-the-world-2013/";
+
+            }else if (name == 'twitter') {
+                document.getElementById('title').innerHTML="Top 10 Countries with the Most Users on Twitter"
+                 document.getElementById('subtitle').innerHTML="";
+                document.getElementById('overall').style.visibility = 'hidden';
+                document.getElementById('facebook').style.visibility = 'hidden';
+                document.getElementById('twitter').style.visibility = 'visible';
+                document.getElementById('youtube').style.visibility = 'hidden';                
+                document.getElementById('linkedin').style.visibility = 'hidden';                                
+                document.getElementById('reddit').style.visibility = 'hidden';
+                document.getElementById('pinterest').style.visibility = 'hidden';
+                document.getElementById('sources').innerHTML="http://www.thecountriesof.com/top-10-countries-with-most-twitter-users/";
+            
+            }else if (name == 'youtube') {
+                document.getElementById('title').innerHTML="Top 10 Countries with the Most Views on Youtube"
+                document.getElementById('subtitle').innerHTML="";
+                document.getElementById('overall').style.visibility = 'hidden';
+                document.getElementById('facebook').style.visibility = 'hidden';                
+                document.getElementById('twitter').style.visibility = 'hidden';
+                document.getElementById('youtube').style.visibility = 'visible';                
+                document.getElementById('linkedin').style.visibility = 'hidden';                                
+                document.getElementById('reddit').style.visibility = 'hidden';
+                document.getElementById('pinterest').style.visibility = 'hidden';
+                document.getElementById('sources').innerHTML="http://newmediarockstars.com/2013/03/the-top-10-countries-in-youtube-viewership-outside-the-usa-infographic/";
+
+            }else if (name == 'linkedin') {
+                document.getElementById('title').innerHTML="Top 10 Countries with the Most Users on LinkedIn"
+                document.getElementById('subtitle').innerHTML="";
+                document.getElementById('overall').style.visibility = 'hidden';
+                document.getElementById('facebook').style.visibility = 'hidden';
+                document.getElementById('twitter').style.visibility = 'hidden';
+                document.getElementById('youtube').style.visibility = 'hidden';
+                document.getElementById('linkedin').style.visibility = 'visible';                
+                document.getElementById('reddit').style.visibility = 'hidden';
+                document.getElementById('pinterest').style.visibility = 'hidden';
+                document.getElementById('sources').innerHTML="http://blog.limaconsulting.com/2012/social-media/top-10-digital-marketing-technology-trends-for-2013/";
+
+            }else if (name == 'reddit') {
+                document.getElementById('title').innerHTML="Top 10 Countries with the Most Users on Reddit"
+                document.getElementById('subtitle').innerHTML="";
+                document.getElementById('overall').style.visibility = 'hidden';
+                document.getElementById('facebook').style.visibility = 'hidden';
+                document.getElementById('twitter').style.visibility = 'hidden';
+                document.getElementById('youtube').style.visibility = 'hidden';
+                document.getElementById('linkedin').style.visibility = 'hidden';                                
+                document.getElementById('reddit').style.visibility = 'visible';
+                document.getElementById('pinterest').style.visibility = 'hidden';
+                document.getElementById('sources').innerHTML="http://www.redditblog.com/2011/06/which-cities-countries-have-most-reddit.html";
+
+            }else if (name == 'pinterest') {
+                document.getElementById('title').innerHTML="Top 10 Countries with the Most Users on Pinterest"
+                document.getElementById('subtitle').innerHTML="";
+                document.getElementById('overall').style.visibility = 'hidden';
+                document.getElementById('facebook').style.visibility = 'hidden'; 
+                document.getElementById('twitter').style.visibility = 'hidden';
+                document.getElementById('youtube').style.visibility = 'hidden';
+                document.getElementById('linkedin').style.visibility = 'hidden';                                
+                document.getElementById('reddit').style.visibility = 'hidden';
+                document.getElementById('pinterest').style.visibility = 'visible';
+                document.getElementById('sources').innerHTML="http://semiocast.com/en/publications/2013_07_10_Pinterest_has_70_million_users";
+
+            }
+        }
+        
+        var overallMap = new Datamap({
+            element: document.getElementById('overall'),
+            geographyConfig: {
+                highlightOnHover: true,
+                highlightFillColor: '#78c86c',
+                highlightBorderColor: '#F7F7F7',
+                popupOnHover: true,
+                popupTemplate: function(geo, data) {
+                    if (data == null) {
+                        return ['<div class="hoverinfo"><strong>',
+                            geo.properties.name].join('');
+                    }else{
+                        return ['<div class="hoverinfo"><strong>',
+                                geo.properties.name,
+                                '<br>Rank: ' + data.rank,
+                                '</strong></div>'].join('');
+                    }
+                }
+            },
+            fills: {
+                top10: '#ABDDA4',
+                defaultFill: '#def2dc'
+            },
+            data: {
+                GBR: {
+                    fillKey: 'top10',
+                    rank: 1
+                },
+                USA: {
+                    fillKey: 'top10',
+                    rank: 2
+                },
+                RUS: {
+                    fillKey: 'top10',
+                    rank: 3
+                },
+                TCH: {
+                    fillKey: 'top10',
+                    rank: 4
+                },
+                ESP: {
+                    fillKey: 'top10',
+                    rank: 5
+                },
+                POL: {
+                    fillKey: 'top10',
+                    rank: 6
+                },
+                BRA: {
+                    fillKey: 'top10',
+                    rank: 7
+                },
+                FRA: {
+                    fillKey: 'top10',
+                    rank: 8
+                },
+                ITA: {
+                    fillKey: 'top10',
+                    rank: 9
+                },
+                TUR: {
+                    fillKey: 'top10',
+                    rank: 10
+                }
+                
+            }
+        });
+        
+        
+        var facebookMap = new Datamap({
+            element: document.getElementById('facebook'),
+            geographyConfig:{
+                highlightOnHover: true,
+                highlightFillColor: '#3B5998',
+                highlightBorderColor: '#F7F7F7',
+                popupOnHover: true,
+                popupTemplate: function(geo, data) {
+                    if (data == null) {
+                        return ['<div class="hoverinfo"><strong>',
+                            geo.properties.name,'</strong></div>'].join('');
+                    }else{
+                        return ['<div class="hoverinfo"><strong>',
+                                geo.properties.name,
+                                '<br>Number of Users: ' + data.users,
+                                '</strong></div>'].join('');
+                    }
+                }
+            },
+            fills:{
+                top10: '#8B9DC3',
+                defaultFill: '#DFE3EE'
+            },
+            data:{
+                USA: {
+                    fillKey: 'top10',
+                    users: '166,029,240'
+                },
+                IND: {
+                    fillKey: 'top10',
+                    users: '62,713,680'
+                },
+                BRA: {
+                    fillKey: 'top10',
+                    users: '58,565,700'
+                },
+                INA: {
+                    fillKey: 'top10',
+                    users: '51,096,860'
+                },
+                MEX: {
+                    fillKey: 'top10',
+                    users: '38,463,860'
+                },
+                GBR: {
+                    fillKey: 'top10',
+                    users: '32,950,400'
+                },
+                TUR: {
+                    fillKey: 'top10',
+                    users: '32,131,260'
+                },
+                PHI: {
+                    fillKey: 'top10',
+                    users: '29,890,900'
+                },
+                FRA: {
+                    fillKey: 'top10',
+                    users: '25,624,760'
+                },
+                GER: {
+                    fillKey: 'top10',
+                    users: '25,332,440'
+                },
+            }
+        });
+     
+    
+    
+
+        
+    
+
+     
+    
+    
+        var twitterMap = new Datamap({     
+            element: document.getElementById('twitter'),
+            geographyConfig:{
+                highlightOnHover: true,
+                highlightFillColor: '#0084b4',
+                highlightBorderColor: '#F7F7F7',
+                popupOnHover: true,
+                popupTemplate: function(geo, data) {
+                    if (data == null) {
+                        return ['<div class="hoverinfo"><strong>',
+                            geo.properties.name,'</strong></div>'].join('');
+                    }else{
+                        return ['<div class="hoverinfo"><strong>',
+                                geo.properties.name,
+                                '<br>Number of Users: ' + data.users,
+                                '</strong></div>'].join('');
+                    }
+                }
+                
+            },
+            fills:{
+                top10: '#3df',
+                defaultFill: '#c0deed'
+            },
+            data:{
+                CHN: {
+                    fillKey: 'top10',
+                    users: '35,500,000'
+                },
+                IND: {
+                    fillKey: 'top10',
+                    users: '33,000,000'
+                },
+                USA: {
+                    fillKey: 'top10',
+                    users: '22,900,000'
+                },
+                BRA: {
+                    fillKey: 'top10',
+                    users: '19,600,000'
+                },
+                MEX: {
+                    fillKey: 'top10',
+                    users: '11,700,000'
+                },
+                GBR: {
+                    fillKey: 'top10',
+                    users: '6,600,000'
+                },
+                ARG: {
+                    fillKey: 'top10',
+                    users: '6,300,000'
+                },
+                ESP: {
+                    fillKey: 'top10',
+                    users: '5,000,000'
+                },
+                ITA: {
+                    fillKey: 'top10',
+                    users: '3,100,000'
+                },
+                GER: {
+                    fillKey: 'top10',
+                    users: '2,400,000'
+                },
+            }
+        });
+        
+        
+
+
+
+
+
+
+        var youtubeMap = new Datamap({
+            element: document.getElementById('youtube'),
+            geographyConfig:{
+                highlightOnHover: true,
+                highlightFillColor: '#8f241b',
+                highlightBorderColor: '#F7F7F7',
+                popupOnHover: true,
+                popupTemplate: function(geo, data) {
+                    if (data == null) {
+                        return ['<div class="hoverinfo"><strong>',
+                            geo.properties.name,'</strong></div>'].join('');
+                    }else{
+                        return ['<div class="hoverinfo"><strong>',
+                                geo.properties.name,
+                                '<br>Number of Videos Viewed: ' + data.users,
+                                '</strong></div>'].join('');
+                    }
+                }
+                
+            },
+            fills:{
+                top10: '#d90000',
+                defaultFill: '#eda7a1'
+            },
+            data:{
+                USA: {
+                    fillKey: 'top10',
+                    users: '123,870,410,782'
+                },
+                GRB: {
+                    fillKey: 'top10',
+                    users: '33,560,918,510'
+                },
+                IND: {
+                    fillKey: 'top10',
+                    users: '14,810,049,945'
+                },
+                GER: {
+                    fillKey: 'top10',
+                    users: '14,524,140,584'
+                },
+                CAN: {
+                    fillKey: 'top10',
+                    users: '13,700,391,417'
+                },
+                FRA: {
+                    fillKey: 'top10',
+                    users: '12,721,544,257'
+                },
+                KOR: {
+                    fillKey: 'top10',
+                    users: '11,809,710,084'
+                },
+                RUS: {
+                    fillKey: 'top10',
+                    users: '11,492,620,275'
+                },
+                JPN: {
+                    fillKey: 'top10',
+                    users: '11,492,620,275'
+                },
+                BRA: {
+                    fillKey: 'top10',
+                    users: '10,856,237,321'
+                },
+                
+                
+            }
+        });
+        
+        
+                
+    
+    
+        var linkedinMap = new Datamap({
+            element: document.getElementById('linkedin'),
+            geographyConfig:{
+                highlightOnHover: true,
+                highlightFillColor: '#2b456b',
+                highlightBorderColor: '#F7F7F7',
+                popupOnHover: true,
+                popupTemplate: function(geo, data) {
+                    if (data == null) {
+                        return ['<div class="hoverinfo"><strong>',
+                            geo.properties.name,'</strong></div>'].join('');
+                    }else{
+                        return ['<div class="hoverinfo"><strong>',
+                                geo.properties.name,
+                                '<br>Number of Videos Viewed: ' + data.users,
+                                '</strong></div>'].join('');
+                    }
+                }
+                
+            },
+            fills:{
+                top10: '#4875B4',
+                defaultFill: '#b4c7e1'
+            },
+            data:{
+                USA: {
+                    fillKey: 'top10',
+                    users: '73,298,613'
+                },
+                IND: {
+                    fillKey: 'top10',
+                    users: '18,348,445'
+                },
+                GBR: {
+                    fillKey: 'top10',
+                    users: '10,953,869'
+                },
+                CAN: {
+                    fillKey: 'top10',
+                    users: '6,157,479'
+                },
+                AUS: {
+                    fillKey: 'top10',
+                    users: '3,844,110'
+                },
+                NED: {
+                    fillKey: 'top10',
+                    users: '3,023,993'
+                },
+                CHN: {
+                    fillKey: 'top10',
+                    users: '2,778,671'
+                },
+                RSA: {
+                    fillKey: 'top10',
+                    users: '2,201,539'
+                },
+                BRA: {
+                    fillKey: 'top10',
+                    users: '1,660,867'
+                },
+                PAK: {
+                    fillKey: 'top10',
+                    users: '1,472,143'
+                },
+                
+                
+            }
+        });
+        
+
+    
+        var redditMap = new Datamap({
+            element: document.getElementById('reddit'),
+            geographyConfig:{
+                highlightOnHover: true,
+                highlightFillColor: '#4897e4',
+                highlightBorderColor: '#F7F7F7',
+                popupOnHover: true,
+                popupTemplate: function(geo, data) {
+                    if (data == null) {
+                        return ['<div class="hoverinfo"><strong>',
+                            geo.properties.name,'</strong></div>'].join('');
+                    }else{
+                        return ['<div class="hoverinfo"><strong>',
+                                geo.properties.name,
+                                '<br>Number of Users: ' + data.users,
+                                '</strong></div>'].join('');
+                    }
+                }
+                
+            },
+            fills:{
+                top10: '#8bbdee',
+                defaultFill: '#cee3f8'
+            },
+            data:{
+                CAN: {
+                    fillKey: 'top10',
+                    users: '15,720,000'
+                },
+                USA: {
+                    fillKey: 'top10',
+                    users: '15,460,000'
+                },
+                DEN: {
+                    fillKey: 'top10',
+                    users: '13,990,000'
+                },
+                NOR: {
+                    fillKey: 'top10',
+                    users: '13,810,000'
+                },
+                SWE: {
+                    fillKey: 'top10',
+                    users: '13,340,000'
+                },
+                NED: {
+                    fillKey: 'top10',
+                    users: '12,890,000'
+                },
+                GBR: {
+                    fillKey: 'top10',
+                    users: '12,860,000'
+                },
+                IRL: {
+                    fillKey: 'top10',
+                    users: '12,570,000'
+                },
+                BEL: {
+                    fillKey: 'top10',
+                    users: '11,980,000'
+                },
+                FIN: {
+                    fillKey: 'top10',
+                    users: '11,270,000'
+                },
+            }
+        });
+    
+        var pinterestMap = new Datamap({
+            element: document.getElementById('pinterest'),
+            geographyConfig:{
+                highlightOnHover: true,
+                highlightFillColor: '#e85061',
+                highlightBorderColor: '#F7F7F7',
+                popupOnHover: true,
+                popupTemplate: function(geo, data) {
+                    if (data == null) {
+                        return ['<div class="hoverinfo"><strong>',
+                            geo.properties.name,'</strong></div>'].join('');
+                    }else{
+                        return ['<div class="hoverinfo"><strong>',
+                                geo.properties.name,
+                                '<br>Number of Users: ' + data.users,
+                                '</strong></div>'].join('');
+                    }
+                }
+                
+            },
+            fills:{
+                top10: '#ff697e',
+                defaultFill: '#f9d2d7'
+            },
+            data:{
+                USA: {
+                    fillKey: 'top10',
+                    users: '49,000,000 '
+                },
+                CAN: {
+                    fillKey: 'top10',
+                    users: '4,000,000 '
+                },
+                GBR: {
+                    fillKey: 'top10',
+                    users: '2,000,000 '
+                },
+                AUS: {
+                    fillKey: 'top10',
+                    users: '1,500,000 '
+                },
+                MEX: {
+                    fillKey: 'top10',
+                    users: '1,000,000 '
+                },
+                BRA: {
+                    fillKey: 'top10',
+                    users: '750,000 '
+                },
+                ESP: {
+                    fillKey: 'top10',
+                    users: '650,000 '
+                },
+                NED: {
+                    fillKey: 'top10',
+                    users: '650,000 '
+                },
+                FRA: {
+                    fillKey: 'top10',
+                    users: '550,000 '
+                },
+                IND: {
+                    fillKey: 'top10',
+                    users: '500,000 '
+                }
+    
+            }
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 960 366.6" enable-background="new 0 0 960 366.6" xml:space="preserve">
+    <g id="min">
+            <image overflow="visible" opacity="0.5" width="907" height="76" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAABMCAYAAADEFiLyAAAACXBIWXMAAAsSAAALEgHS3X78AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABUtJREFUeNrs3Wtr20gUgOGxY8dpaUPZhf7/P7hL6SU3X7QaOLMeTyXHXZZmDM8DhyayLEP66WVGckoAAADQWPym9wAAAPC2hv8z/BZnzhWNAAAA1xeJwyUBuXolEhcTIxQBAACuMxiHZmajcTUTimWWE9OGIwAAAH2HYpnDxAxTwbg6E4o3MatqyrFlsi0VAACg1zhsf89RuI/ZVVOO/fTeuZXFEom3MZuYdRWNbTCKRQAAgL5isQ7FHIfbcZ5jXmJSvD67slhvPb2JSLwb53017+L4Os6xHRUAAKDfaBwiBLcRho/jPFRTn3eyHXVqG+oyHVcVcyDeV/MhgnGTTlcXBSMAAEB/oVhWFZ8jFL+P87VqwfJ6e//i2VjcVLH45zh/jPMpgjGvOK7T8aE3AAAA9KUEYF5VfIpQ/BItl5Vtqdv4+WQRcG4bahuLORQ/RzTex/GyumhlEQAAoC/1FtS8qpi3nOYVxdt4vQRkmXrX6NltqDdRm3nLaV5J/BSh+DkdVxc38X6xCAAA0Gcs7iIW86riXbyW7138Mc63dHwezU/feLGqIrEOxvppqCUY76to/BgfJBYBAAD6jsW8criJ408RieXhpeXbLtomHOa+Z7FeXdyk41NRP0QofoyLr9L0dy4CAADwtrF4iFgs9yg+R9fdpeNXI84+uLS9Z3EqGOtoLOH4Lp0+5CYJRgAAgG5CMaXjw21S/LtpInEqFGfvWUxNPJZoLOG4qmadrCwCAAD0GoyH+HlXddxN1XhnbylcvfIBdTAuJgJyKRYBAAC6jMU0EYaLS0LxklhM6eftqYuZYwAAAPTjtZY7a3nmoosLPxgAAIC+gzH9avst/e0AAAAQiwAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAIBYBAAAQiwAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAgFgEAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAACxCAAAgFgEAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAADEIgAAAGIRAAAAsQgAAIBYBAAAQCwCAAAgFgEAABCLAAAAiEUAAACuJxaHmHMGfz4AAICuXdJ1k+esfuHiQzOXRiUAAAC/PxJfa7mzVhd+wKG5+KGabOH/AgAAoKtYrLttmOm7/xSLbRjux9lVs43zloIRAACgq1BM0XHbpuP2EwH5aiwOE5G4j8kf8BzzNM46zt1FLApFAACAvoLxEM32GB1Xmm5btV4bjcNULE6F4rYKxIdxvo+ziXO38f6FWAQAAOguFoeIxdxz36LnHqpw3M4E40ksDlXwDem45fQlKjRf9Os4d3HOc0SjWAQAAOg7Fp+j6b5E132PzntJx62pQ/PeyZXFelXxsbrobZyTK/R9xOKNWAQAAOg2FvcRiw8Rin9F35VgbFcX/7WauNihqs9ywXKPYi7PvHx5F8eWaf67GgEAAHg75UE2OQif0nEh8O/ovIfovl2a2Io6t7JYx2I5J3/Aj3HepeOqYnm4jZVFAACAfrTPo8l9V99iOBeL6ZJYfIk3p3R6U2TejrpOtqACAABcQzCW2wzLM2keqnm5JBbr7+LYx5vK72XZch3vqVcVC9EIAADQRyTWP5fG26XTr0V8iZl8Iupq5sL75ucSizczoSgWAQAA+ovFNhhLNJYpx9r3TAbeoprlxNSvAwAA0H881vcwtlO/fjYW6+OLiUlCEQAA4OqCsQ3HoTmeLonFqddtOwUAALjeUJz6fbgkBi8lEgEAAK4/GgEAAODX/CPAANT5i6kdrUyxAAAAAElFTkSuQmCC" transform="matrix(1 0 0 1 31 12.6146)"/>
+            <rect x="36" y="17.6" fill="#DCDAD5" width="888" height="57"/>
+            <image overflow="visible" opacity="0.5" width="907" height="84" xlink:href="data:image/png;base64,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" transform="matrix(1 0 0 1 32 271.6146)"/>
+            <rect x="37" y="276.6" fill="#DCDAD5" width="888" height="65"/>
+            <text transform="matrix(1 0 0 1 162.9258 57.7293)" font-size="36">Board Games by Minimum # of Players Needed</text>
+    
+            <rect x="36" y="93.6" fill="#FF0000" width="50" height="50" id="bananagrams" onmouseover="displayInfo('bananagrams');"/>
+            <rect x="96" y="93.6" fill="#FF0000" width="50" height="50" id="boggle" onmouseover="displayInfo('boggle');"/>
+            <rect x="156" y="93.6" fill="#FF0000" width="50" height="50" id="operation" onmouseover="displayInfo('operation');"/>
+            <rect x="216" y="93.6" fill="#FFFF00" width="50" height="50" id="backgammon" onmouseover="displayInfo('backgammon');"/>
+            <rect x="276" y="93.6" fill="#FFFF00" width="50" height="50" id="battleOfTheSexes" onmouseover="displayInfo('battleOfTheSexes');"/>
+            <rect x="336" y="93.6" fill="#FFFF00" width="50" height="50" id="battleship" onmouseover="displayInfo('battleship');"/>
+            <rect x="396" y="93.6" fill="#FFFF00" width="50" height="50" id="candyland" onmouseover="displayInfo('candyland');"/>
+            <rect x="456" y="93.6" fill="#FFFF00" width="50" height="50" id="checkers" onmouseover="displayInfo('checkers');"/>
+            <rect x="516" y="93.6" fill="#FFFF00" width="50" height="50" id="chess" onmouseover="displayInfo('chess');"/>
+            <rect x="576" y="93.6" fill="#FFFF00" width="50" height="50" id="chutesAndLadders" onmouseover="displayInfo('chutesAndLadders');"/>
+            <rect x="636" y="93.6" fill="#FFFF00" width="50" height="50" id="connect4" onmouseover="displayInfo('connect4');"/>
+            <rect x="696" y="93.6" fill="#FFFF00" width="50" height="50" id="cribbage" onmouseover="displayInfo('cribbage');"/>
+            <rect x="756" y="93.6" fill="#FFFF00" width="50" height="50" id="dominos" onmouseover="displayInfo('dominos');"/>
+            <rect x="816" y="93.6" fill="#FFFF00" width="50" height="50" id="familyFeud" onmouseover="displayInfo('familyFeud');"/>
+            <rect x="876" y="93.6" fill="#FFFF00" width="50" height="50" id="gameOfLife" onmouseover="displayInfo('gameOfLife');"/>
+            <rect x="36" y="153.6" fill="#FFFF00" width="50" height="50" id="guessWho" onmouseover="displayInfo('guessWho');"/>
+            <rect x="96" y="153.6" fill="#FFFF00" width="50" height="50" id="hiHoCheryO" onmouseover="displayInfo('hiHoCherryO');"/>
+            <rect x="156" y="153.6" fill="#FFFF00" width="50" height="50" id="hungryHungryHippos" onmouseover="displayInfo('hungryHungryHippos');"/>
+            <rect x="216" y="153.6" fill="#FFFF00" width="50" height="50" id="jenga" onmouseover="displayInfo('jenga');"/>
+            <rect x="276" y="153.6" fill="#FFFF00" width="50" height="50" id="mancala" onmouseover="displayInfo('mancala');"/>
+            <rect x="336" y="153.6" fill="#FFFF00" width="50" height="50" id="monopoly" onmouseover="displayInfo('monopoly');"/>
+            <rect x="396" y="153.6" fill="#FFFF00" width="50" height="50" id="mousetrap" onmouseover="displayInfo('mousetrap');"/>
+            <rect x="456" y="153.6" fill="#FFFF00" width="50" height="50" id="pandemic" onmouseover="displayInfo('pandemic');"/>
+            <rect x="516" y="153.6" fill="#FFFF00" width="50" height="50" id="parcheesi" onmouseover="displayInfo('parcheesi');"/>
+            <rect x="576" y="153.6" fill="#FFFF00" width="50" height="50" id="rackO" onmouseover="displayInfo('rackO');"/>
+            <rect x="636" y="153.6" fill="#FFFF00" width="50" height="50" id="risk" onmouseover="displayInfo('risk');"/>
+            <rect x="696" y="153.6" fill="#FFFF00" width="50" height="50" id="scattergories" onmouseover="displayInfo('scattergories');"/>
+            <rect x="756" y="153.6" fill="#FFFF00" width="50" height="50" id="scrabble" onmouseover="displayInfo('scrabble');"/>
+            <rect x="816" y="153.6" fill="#FFFF00" width="50" height="50" id="skipbo" onmouseover="displayInfo('skipbo');"/>
+            <rect x="876" y="153.6" fill="#FFFF00" width="50" height="50" id="sorry" onmouseover="displayInfo('sorry');"/>
+            <rect x="36" y="213.6" fill="#FFFF00" width="50" height="50" id="stratego" onmouseover="displayInfo('stratego');"/>
+            <rect x="96" y="213.6" fill="#FFFF00" width="50" height="50" id="trivialPursuit" onmouseover="displayInfo('trivialPursuit');"/>
+            <rect x="156" y="213.6" fill="#FFFF00" width="50" height="50" id="trouble" onmouseover="displayInfo('trouble');"/>
+            <rect x="216" y="213.6" fill="#FFFF00" width="50" height="50" id="twister" onmouseover="displayInfo('twister');"/>
+            <rect x="276" y="213.6" fill="#FFFF00" width="50" height="50" id="uno" onmouseover="displayInfo('uno');"/>
+            <rect x="336" y="213.6" fill="#FFFF00" width="50" height="50" id="yahtzee" onmouseover="displayInfo('yahtzee');"/>
+            <rect x="396" y="213.6" fill="#00FF00" width="50" height="50" id="clue" onmouseover="displayInfo('clue');"/>
+            <rect x="456" y="213.6" fill="#00FF00" width="50" height="50" id="factOrCrap" onmouseover="displayInfo('factOrCrap');"/>
+            <rect x="516" y="213.6" fill="#00FF00" width="50" height="50" id="pictionary" onmouseover="displayInfo('pictionary');"/>
+            <rect x="576" y="213.6" fill="#00FF00" width="50" height="50" id="mao" onmouseover="displayInfo('mao');"/>
+            <rect x="636" y="213.6" fill="#0000FF" width="50" height="50" id="applesToApples" onmouseover="displayInfo('applesToApples');"/>
+            <rect x="696" y="213.6" fill="#0000FF" width="50" height="50" id="catchPhrase" onmouseover="displayInfo('catchPrase');"/>
+            <rect x="756" y="213.6" fill="#0000FF" width="50" height="50" id="cranium" onmouseover="displayInfo('cranium');"/>
+            <rect x="816" y="213.6" fill="#0000FF" width="50" height="50" id="cardsAgainstHumanity" onmouseover="displayInfo('cardsAgainstHumanity');"/>
+            <rect x="876" y="213.6" fill="#0000FF" width="50" height="50" id="gameOfThings" onmouseover="displayInfo('gameOfThings');"/>
+            
+            <text transform="matrix(1 0 0 1 205.0986 325.9397)"  font-size="28">Number of Players Needed:</text>
+            <text transform="matrix(1 0 0 1 530.6855 322.2292)" fill="#FFFFFF"  font-size="28">1</text>
+            <rect x="513" y="284.6" fill="#FF0000" width="50" height="50" />
+            <text transform="matrix(1 0 0 1 584.6855 322.2292)"   font-size="28">2</text>
+            <rect x="567" y="284.6" fill="#FFFF00" width="50" height="50" />
+            <text transform="matrix(1 0 0 1 639.6855 322.2292)" fill="#FFFFFF"   font-size="28">3</text>
+            <rect x="622" y="284.6" fill="#00FF00" width="50" height="50" />
+            <text transform="matrix(1 0 0 1 694.6855 322.2292)" fill="#FFFFFF"   font-size="28">4</text>
+            <rect x="677" y="284.6" fill="#0000FF" width="50" height="50"/>
+
+    </g>    
+</svg>

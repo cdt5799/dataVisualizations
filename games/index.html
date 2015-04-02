@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Games Visualization</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>	
+    
+        <style>
+            body{
+                font-family:'Open Sans', sans-serif;
+                margin-top: 15px;
+            }
+            p{
+                margin-right: 50px;
+                margin-left: 50px;
+                margin-top: 7px;
+                margin-bottom: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <label>Sort games by:</label>
+        <button type="button" onclick="loadSVG('min')">Minimum Players Needed</button>
+        <button type="button" onclick="loadSVG('max')">Maximum Players Allowed</button>
+        <button type="button" onclick="loadSVG('time')">Estimated Play Time</button>
+        <button type="button" onclick="loadSVG('age')">Target Age</button>
+
+
+        <div id ="minSVG" style="position: absolute; top:50px; left:0px; visibility: visible;">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="960" height="366.6"  xml:space="preserve">
+                <g>
+                        <image overflow="visible" opacity="0.5" width="907" height="76" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAABMCAYAAADEFiLyAAAACXBIWXMAAAsSAAALEgHS3X78AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABUtJREFUeNrs3Wtr20gUgOGxY8dpaUPZhf7/P7hL6SU3X7QaOLMeTyXHXZZmDM8DhyayLEP66WVGckoAAADQWPym9wAAAPC2hv8z/BZnzhWNAAAA1xeJwyUBuXolEhcTIxQBAACuMxiHZmajcTUTimWWE9OGIwAAAH2HYpnDxAxTwbg6E4o3MatqyrFlsi0VAACg1zhsf89RuI/ZVVOO/fTeuZXFEom3MZuYdRWNbTCKRQAAgL5isQ7FHIfbcZ5jXmJSvD67slhvPb2JSLwb53017+L4Os6xHRUAAKDfaBwiBLcRho/jPFRTn3eyHXVqG+oyHVcVcyDeV/MhgnGTTlcXBSMAAEB/oVhWFZ8jFL+P87VqwfJ6e//i2VjcVLH45zh/jPMpgjGvOK7T8aE3AAAA9KUEYF5VfIpQ/BItl5Vtqdv4+WQRcG4bahuLORQ/RzTex/GyumhlEQAAoC/1FtS8qpi3nOYVxdt4vQRkmXrX6NltqDdRm3nLaV5J/BSh+DkdVxc38X6xCAAA0Gcs7iIW86riXbyW7138Mc63dHwezU/feLGqIrEOxvppqCUY76to/BgfJBYBAAD6jsW8criJ408RieXhpeXbLtomHOa+Z7FeXdyk41NRP0QofoyLr9L0dy4CAADwtrF4iFgs9yg+R9fdpeNXI84+uLS9Z3EqGOtoLOH4Lp0+5CYJRgAAgG5CMaXjw21S/LtpInEqFGfvWUxNPJZoLOG4qmadrCwCAAD0GoyH+HlXddxN1XhnbylcvfIBdTAuJgJyKRYBAAC6jMU0EYaLS0LxklhM6eftqYuZYwAAAPTjtZY7a3nmoosLPxgAAIC+gzH9avst/e0AAAAQiwAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAIBYBAAAQiwAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAgFgEAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAACxCAAAgFgEAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAADEIgAAAGIRAAAAsQgAAIBYBAAAQCwCAAAgFgEAABCLAAAAiEUAAACuJxaHmHMGfz4AAICuXdJ1k+esfuHiQzOXRiUAAAC/PxJfa7mzVhd+wKG5+KGabOH/AgAAoKtYrLttmOm7/xSLbRjux9lVs43zloIRAACgq1BM0XHbpuP2EwH5aiwOE5G4j8kf8BzzNM46zt1FLApFAACAvoLxEM32GB1Xmm5btV4bjcNULE6F4rYKxIdxvo+ziXO38f6FWAQAAOguFoeIxdxz36LnHqpw3M4E40ksDlXwDem45fQlKjRf9Os4d3HOc0SjWAQAAOg7Fp+j6b5E132PzntJx62pQ/PeyZXFelXxsbrobZyTK/R9xOKNWAQAAOg2FvcRiw8Rin9F35VgbFcX/7WauNihqs9ywXKPYi7PvHx5F8eWaf67GgEAAHg75UE2OQif0nEh8O/ovIfovl2a2Io6t7JYx2I5J3/Aj3HepeOqYnm4jZVFAACAfrTPo8l9V99iOBeL6ZJYfIk3p3R6U2TejrpOtqACAABcQzCW2wzLM2keqnm5JBbr7+LYx5vK72XZch3vqVcVC9EIAADQRyTWP5fG26XTr0V8iZl8Iupq5sL75ucSizczoSgWAQAA+ovFNhhLNJYpx9r3TAbeoprlxNSvAwAA0H881vcwtlO/fjYW6+OLiUlCEQAA4OqCsQ3HoTmeLonFqddtOwUAALjeUJz6fbgkBi8lEgEAAK4/GgEAAODX/CPAANT5i6kdrUyxAAAAAElFTkSuQmCC" transform="matrix(1 0 0 1 31 12.6146)"/>
+                        <rect x="36" y="17.6" fill="#DCDAD5" width="888" height="57"/>
+                        <image overflow="visible" opacity="0.5" width="907" height="84" xlink:href="data:image/png;base64,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" transform="matrix(1 0 0 1 32 271.6146)"/>
+                        <rect x="37" y="276.6" fill="#DCDAD5" width="888" height="65"/>
+                        <text font-size="36" x="40" y="60">Board Games by Minimum # of Players Needed</text>                
+
+                        <rect x="36" y="93.6" fill="#FF0000" width="50" height="50" id="bananagrams" onmouseover="displayInfo('bananagrams');"/>
+                        <rect x="96" y="93.6" fill="#FF0000" width="50" height="50" id="boggle" onmouseover="displayInfo('boggle');"/>
+                        <rect x="156" y="93.6" fill="#FF0000" width="50" height="50" id="operation" onmouseover="displayInfo('operation');"/>
+                        <rect x="216" y="93.6" fill="#FFFF00" width="50" height="50" id="backgammon" onmouseover="displayInfo('backgammon');"/>
+                        <rect x="276" y="93.6" fill="#FFFF00" width="50" height="50" id="battleOfTheSexes" onmouseover="displayInfo('battleOfTheSexes');"/>
+                        <rect x="336" y="93.6" fill="#FFFF00" width="50" height="50" id="battleship" onmouseover="displayInfo('battleship');"/>
+                        <rect x="396" y="93.6" fill="#FFFF00" width="50" height="50" id="candyland" onmouseover="displayInfo('candyland');"/>
+                        <rect x="456" y="93.6" fill="#FFFF00" width="50" height="50" id="checkers" onmouseover="displayInfo('checkers');"/>
+                        <rect x="516" y="93.6" fill="#FFFF00" width="50" height="50" id="chess" onmouseover="displayInfo('chess');"/>
+                        <rect x="576" y="93.6" fill="#FFFF00" width="50" height="50" id="chutesAndLadders" onmouseover="displayInfo('chutesAndLadders');"/>
+                        <rect x="636" y="93.6" fill="#FFFF00" width="50" height="50" id="connect4" onmouseover="displayInfo('connect4');"/>
+                        <rect x="696" y="93.6" fill="#FFFF00" width="50" height="50" id="cribbage" onmouseover="displayInfo('cribbage');"/>
+                        <rect x="756" y="93.6" fill="#FFFF00" width="50" height="50" id="dominos" onmouseover="displayInfo('dominos');"/>
+                        <rect x="816" y="93.6" fill="#FFFF00" width="50" height="50" id="familyFeud" onmouseover="displayInfo('familyFeud');"/>
+                        <rect x="876" y="93.6" fill="#FFFF00" width="50" height="50" id="gameOfLife" onmouseover="displayInfo('gameOfLife');"/>
+                        <rect x="36" y="153.6" fill="#FFFF00" width="50" height="50" id="guessWho" onmouseover="displayInfo('guessWho');"/>
+                        <rect x="96" y="153.6" fill="#FFFF00" width="50" height="50" id="hiHoCheryO" onmouseover="displayInfo('hiHoCherryO');"/>
+                        <rect x="156" y="153.6" fill="#FFFF00" width="50" height="50" id="hungryHungryHippos" onmouseover="displayInfo('hungryHungryHippos');"/>
+                        <rect x="216" y="153.6" fill="#FFFF00" width="50" height="50" id="jenga" onmouseover="displayInfo('jenga');"/>
+                        <rect x="276" y="153.6" fill="#FFFF00" width="50" height="50" id="mancala" onmouseover="displayInfo('mancala');"/>
+                        <rect x="336" y="153.6" fill="#FFFF00" width="50" height="50" id="monopoly" onmouseover="displayInfo('monopoly');"/>
+                        <rect x="396" y="153.6" fill="#FFFF00" width="50" height="50" id="mousetrap" onmouseover="displayInfo('mousetrap');"/>
+                        <rect x="456" y="153.6" fill="#FFFF00" width="50" height="50" id="pandemic" onmouseover="displayInfo('pandemic');"/>
+                        <rect x="516" y="153.6" fill="#FFFF00" width="50" height="50" id="parcheesi" onmouseover="displayInfo('parcheesi');"/>
+                        <rect x="576" y="153.6" fill="#FFFF00" width="50" height="50" id="rackO" onmouseover="displayInfo('rackO');"/>
+                        <rect x="636" y="153.6" fill="#FFFF00" width="50" height="50" id="risk" onmouseover="displayInfo('risk');"/>
+                        <rect x="696" y="153.6" fill="#FFFF00" width="50" height="50" id="scattergories" onmouseover="displayInfo('scattergories');"/>
+                        <rect x="756" y="153.6" fill="#FFFF00" width="50" height="50" id="scrabble" onmouseover="displayInfo('scrabble');"/>
+                        <rect x="816" y="153.6" fill="#FFFF00" width="50" height="50" id="skipbo" onmouseover="displayInfo('skipbo');"/>
+                        <rect x="876" y="153.6" fill="#FFFF00" width="50" height="50" id="sorry" onmouseover="displayInfo('sorry');"/>
+                        <rect x="36" y="213.6" fill="#FFFF00" width="50" height="50" id="stratego" onmouseover="displayInfo('stratego');"/>
+                        <rect x="96" y="213.6" fill="#FFFF00" width="50" height="50" id="trivialPursuit" onmouseover="displayInfo('trivialPursuit');"/>
+                        <rect x="156" y="213.6" fill="#FFFF00" width="50" height="50" id="trouble" onmouseover="displayInfo('trouble');"/>
+                        <rect x="216" y="213.6" fill="#FFFF00" width="50" height="50" id="twister" onmouseover="displayInfo('twister');"/>
+                        <rect x="276" y="213.6" fill="#FFFF00" width="50" height="50" id="uno" onmouseover="displayInfo('uno');"/>
+                        <rect x="336" y="213.6" fill="#FFFF00" width="50" height="50" id="yahtzee" onmouseover="displayInfo('yahtzee');"/>
+                        <rect x="396" y="213.6" fill="#00FF00" width="50" height="50" id="clue" onmouseover="displayInfo('clue');"/>
+                        <rect x="456" y="213.6" fill="#00FF00" width="50" height="50" id="factOrCrap" onmouseover="displayInfo('factOrCrap');"/>
+                        <rect x="516" y="213.6" fill="#00FF00" width="50" height="50" id="pictionary" onmouseover="displayInfo('pictionary');"/>
+                        <rect x="576" y="213.6" fill="#00FF00" width="50" height="50" id="mao" onmouseover="displayInfo('mao');"/>
+                        <rect x="636" y="213.6" fill="#0000FF" width="50" height="50" id="applesToApples" onmouseover="displayInfo('applesToApples');"/>
+                        <rect x="696" y="213.6" fill="#0000FF" width="50" height="50" id="catchPhrase" onmouseover="displayInfo('catchPrase');"/>
+                        <rect x="756" y="213.6" fill="#0000FF" width="50" height="50" id="cranium" onmouseover="displayInfo('cranium');"/>
+                        <rect x="816" y="213.6" fill="#0000FF" width="50" height="50" id="cardsAgainstHumanity" onmouseover="displayInfo('cardsAgainstHumanity');"/>
+                        <rect x="876" y="213.6" fill="#0000FF" width="50" height="50" id="gameOfThings" onmouseover="displayInfo('gameOfThings');"/>
+                        
+                        <rect x="300" y="311" fill="#FF0000" width="25" height="25"/>
+                        <rect x="330" y="311" fill="#FFFF00" width="25" height="25"/>
+                        <rect x="360" y="311" fill="#00FF00" width="25" height="25"/>
+                        <rect x="390" y="311" fill="#0000FF" width="25" height="25"/>
+                        <text font-size="15pt" x="45" y="330">Number of Players Needed:</text>
+                        <text fill="#FFFFFF" font-size="15" x="308" y="330">1</text>
+                        <text font-size="15" x="338" y="330">2</text>
+                        <text font-size="15" x="368" y="330">3</text>
+                        <text fill="#FFFFFF" font-size="15" x="398" y="330">4</text>
+                </g>    
+            </svg>
+        </div>
+        
+        <div id="maxSVG" style="position: absolute; top:50px; left:0px;visibility: hidden;">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="960" height="366.6" xml:space="preserve">
+                <g>
+                        <image overflow="visible" opacity="0.5" width="907" height="75" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAABLCAYAAADZExJKAAAACXBIWXMAAAsSAAALEgHS3X78AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABUdJREFUeNrs3W1r20gUgNGxY8dJaUPZhf7/P7hLadM0iV+0GrizHk8kx1mWdgLnwKWJLMuQfnqYkZwSAAAANBa/6D0AAAD8XsP/GX6LM+eKRgAAgPcXicMlAbl6JRIXEyMUAQAA3mcwDs3MRuNqJhTLLCemDUcAAAD6DsUyh4kZpoJxdSYUr2JW1ZRjy2RbKgAAQK9x2P6eo3Afs6umHHvx3rmVxRKJ1zGbmHUVjW0wikUAAIC+YrEOxRyH23GeYp5jUrw+u7JYbz29iki8GedDNbdxfB3n2I4KAADQbzQOEYLbCMOf4zxUU593sh11ahvqMh1XFXMg3lXzMYJxk05XFwUjAABAf6FYVhWfIhTvx/lWtWB5vb1/8WwsbqpY/HOcP8b5HMGYVxzX6fjQGwAAAPpSAjCvKj5GKH6NlsvKttRt/HyyCDi3DbWNxRyKXyIa7+J4WV20sggAANCXegtqXlXMW07ziuJ1vF4Csky9a/TsNtSrqM285TSvJH6OUPySjquLm3i/WAQAAOgzFncRi3lV8SZey/cu/hjnezo+j+bFN16sqkisg7F+GmoJxrsqGj/FB4lFAACAvmMxrxxu4vhjRGJ5eGn5tou2CYe571msVxc36fhU1I8Rip/i4qs0/Z2LAAAA/N5YPEQslnsUn6LrbtLxqxFnH1za3rM4FYx1NJZwvE2nD7lJghEAAKCbUEzp+HCbFP9umkicCsXZexZTE48lGks4rqpZJyuLAAAAvQbjIX7eVR13VTXe2VsKV698QB2Mi4mAXIpFAACALmMxTYTh4pJQvCQWU3q5PXUxcwwAAIB+vNZyZy3PXHRx4QcDAADQdzCmt7bf0t8OAAAAsQgAAIBYBAAAQCwCAAAgFgEAABCLAAAAiEUAAADEIgAAAGIRAAAAsQgAAIBYBAAAQCwCAAAgFgEAABCLAAAAiEUAAADEIgAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAIBYBAAAQiwAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAIBYBAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAACxCAAAQLexOMScM/jzAQAAdO2Srps8Z/WGiw/NXBqVAAAA/PpIfK3lzlpd+AGH5uKHarKF/wsAAICuYrHutmGm7/5TLLZhuB9nV802zlsKRgAAgK5CMUXHbZuO208E5KuxOExE4j4mf8BTzOM46zh3F7EoFAEAAPoKxkM028/ouNJ026r12mgcpmJxKhS3VSA+jHM/zibO3cb7F2IRAACgu1gcIhZzz32PnnuownE7E4wnsThUwTek45bT56jQfNFv49zEOU8RjWIRAACg71h8iqb7Gl13H533nI5bU4fmvZMri/Wq4s/qotdxTq7QDxGLV2IRAACg21jcRyw+RCj+FX1XgrFdXfzXauJih6o+ywXLPYq5PPPy5U0cW6b572oEAADg9ykPsslB+JiOC4F/R+c9RPft0sRW1LmVxToWyzn5A36Mc5uOq4rl4TZWFgEAAPrRPo8m9119i+FcLKZLYvE53pzS6U2ReTvqOtmCCgAA8B6CsdxmWJ5J81DN8yWxWH8Xxz7eVH4vy5breE+9qliIRgAAgD4isf65NN4unX4t4nPM5BNRVzMX3jc/l1i8mglFsQgAANBfLLbBWKKxTDnWvmcy8BbVLCemfh0AAID+47G+h7Gd+vWzsVgfX0xMEooAAADvLhjbcBya4+mSWJx63bZTAACA9xuKU78Pl8TgpUQiAADA+49GAAAAeJt/BBgAE8yLpwmstNQAAAAASUVORK5CYII=" transform="matrix(1 0 0 1 31 12)"/>
+                        <rect x="36" y="16" fill="#DCDAD5" width="888" height="57"/>
+                        <image overflow="visible" opacity="0.5" width="907" height="83" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAABTCAYAAAA2lpK8AAAACXBIWXMAAAsSAAALEgHS3X78AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABW5JREFUeNrs3W1r20gUgNGxY8dJaUPZhf7/P7hLadM0iV+0GrizHk8kx1mWdgLnwKWJLMuQfnqYkZwSAAAANBa/6D0AAAD8XsP/GX6LM+eKRgAAgPcXicMlAbl6JRIXEyMUAQAA3mcwDs3MRuNqJhTLLCemDUcAAAD6DsUyh4kZpoJxdSYUr2JW1ZRjy2RbKgAAQK9x2P6eo3Afs6umHHvx3rmVxRKJ1zGbmHUVjW0wikUAAIC+YrEOxRyH23GeYp5jUrw+u7JYbz29iki8GedDNbdxfB3n2I4KAADQbzQOEYLbCMOf4zxUU593sh11ahvqMh1XFXMg3lXzMYJxk05XFwUjAABAf6FYVhWfIhTvx/lWtWB5vb1/8WwsbqpY/HOcP8b5HMGYVxzX6fjQGwAAAPpSAjCvKj5GKH6NlsvKttRt/HyyCDi3DbWNxRyKXyIa7+J4WV20sggAANCXegtqXlXMW07ziuJ1vF4Csky9a/TsNtSrqM285TSvJH6OUPySjquLm3i/WAQAAOgzFncRi3lV8SZey/cu/hjnezo+j+bFN16sqkisg7F+GmoJxrsqGj/FB4lFAACAvmMxrxxu4vhjRGJ5eGn5tou2CYe571msVxc36fhU1I8Rip/i4qs0/Z2LAAAA/N5YPEQslnsUn6LrbtLxqxFnH1za3rM4FYx1NJZwvE2nD7lJghEAAKCbUEzp+HCbFP9umkicCsXZexZTE48lGks4rqpZJyuLAAAAvQbjIX7eVR13VTXe2VsKV698QB2Mi4mAXIpFAACALmMxTYTh4pJQvCQWU3q5PXUxcwwAAIB+vNZyZy3PXHRx4QcDAADQdzCmt7bf0t8OAAAAsQgAAIBYBAAAQCwCAAAgFgEAABCLAAAAiEUAAADEIgAAAGIRAAAAsQgAAIBYBAAAQCwCAAAgFgEAABCLAAAAiEUAAADEIgAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAIBYBAAAQiwAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAIBYBAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAACxCAAAgFgEAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAACxCAAAAK/E4hBzzuDPBwAA0LVLum7ynNUbLj40c2lUAgAA8Osj8bWWO2t14QccmosfqskW/i8AAAC6isW624aZvvtPsdiG4X6cXTXbOG8pGAEAALoKxRQdt206bj8RkK/G4jARifuY/AFPMY/jrOPcXcSiUAQAAOgrGA/RbD+j40rTbavWa6NxmIrFqVDcVoH4MM79OJs4dxvvX4hFAACA7mJxiFjMPfc9eu6hCsftTDCexOJQBd+QjltOn6NC80W/jXMT5zxFNIpFAACAvmPxKZrua3TdfXTeczpuTR2a906uLNarij+ri17HOblCP0QsXolFAACAbmNxH7H4EKH4V/RdCcZ2dfFfq4mLHar6LBcs9yjm8szLlzdxbJnmv6sRAACA36c8yCYH4WM6LgT+HZ33EN23SxNbUedWFutYLOfkD/gxzm06riqWh9tYWQQAAOhH+zya3Hf1LYZzsZguicXneHNKpzdF5u2o62QLKgAAwHsIxnKbYXkmzUM1z5fEYv1dHPt4U/m9LFuu4z31qmIhGgEAAPqIxPrn0ni7dPq1iM8xk09EXc1ceN/8XGLxaiYUxSIAAEB/sdgGY4nGMuVY+57JwFtUs5yY+nUAAAD6j8f6HsZ26tfPxmJ9fDExSSgCAAC8u2Bsw3FojqdLYnHqddtOAQAA3m8oTv0+XBKDlxKJAAAA7z8aAQAA4G3+EWAAN5OLtwQkXqUAAAAASUVORK5CYII=" transform="matrix(1 0 0 1 32 271)"/>
+                        <rect x="37" y="275" fill="#DCDAD5" width="888" height="65"/>
+                        <text font-size="36" x="40" y="60">Board Games by Maximum # of Players Allowed</text>
+                        
+                        <rect x="36" y="92" fill="#FF00FF" width="50" height="50" id="backgammon" onmouseover="displayInfo('backgammon');"/>
+                        <rect x="96" y="92" fill="#FF00FF" width="50" height="50" id="battleship" onmouseover="displayInfo('battleship');"/>
+                        <rect x="156" y="92" fill="#FF00FF" width="50" height="50" id="checkers" onmouseover="displayInfo('checkers');"/>
+                        <rect x="216" y="92" fill="#FF00FF" width="50" height="50" id="chess" onmouseover="displayInfo('chess');"/>
+                        <rect x="276" y="92" fill="#FF00FF" width="50" height="50" id="connect4" onmouseover="displayInfo('connect4');"/>
+                        <rect x="336" y="92" fill="#FF00FF" width="50" height="50" id="guessWho" onmouseover="displayInfo('guessWho');"/>
+                        <rect x="396" y="92" fill="#FF00FF" width="50" height="50" id="mancala" onmouseover="displayInfo('mancala');"/>
+                        <rect x="456" y="92" fill="#FF00FF" width="50" height="50" id="stratego" onmouseover="displayInfo('stratego');"/>
+                        <rect x="516" y="92" fill="#FF0000" width="50" height="50" id="candyland" onmouseover="displayInfo('candyland');"/>
+                        <rect x="576" y="92" fill="#FF0000" width="50" height="50" id="cribbage" onmouseover="displayInfo('cribbage');"/>
+                        <rect x="636" y="92" fill="#FF0000" width="50" height="50" id="hiHoCheryO" onmouseover="displayInfo('hiHoCherryO');"/>
+                        <rect x="696" y="92" fill="#FF0000" width="50" height="50" id="hungryHungryHippos" onmouseover="displayInfo('hungryHungryHippos');"/>
+                        <rect x="756" y="92" fill="#FF0000" width="50" height="50" id="mousetrap" onmouseover="displayInfo('mousetrap');"/>
+                        <rect x="816" y="92" fill="#FF0000" width="50" height="50" id="pandemic" onmouseover="displayInfo('pandemic');"/>
+                        <rect x="876" y="92" fill="#FF0000" width="50" height="50" id="rackO" onmouseover="displayInfo('rackO');"/>
+                        <rect x="36" y="152" fill="#FF0000" width="50" height="50" id="scrabble" onmouseover="displayInfo('scrabble');"/>
+                        <rect x="96" y="152" fill="#FF0000" width="50" height="50"  id="sorry" onmouseover="displayInfo('sorry');"/>
+                        <rect x="156" y="152" fill="#FF0000" width="50" height="50" id="trouble" onmouseover="displayInfo('trouble');"/>
+                        <rect x="216" y="152" fill="#FF0000" width="50" height="50" id="twister" onmouseover="displayInfo('twister');"/>
+                        <rect x="276" y="152" fill="#F7931E" width="50" height="50" id="chutesAndLadders" onmouseover="displayInfo('chutesAndLadders');"/>
+                        <rect x="336" y="152" fill="#F7931E" width="50" height="50" id="clue" onmouseover="displayInfo('clue');"/>
+                        <rect x="396" y="152" fill="#F7931E" width="50" height="50" id="gameOfLife" onmouseover="displayInfo('gameOfLife');"/>
+                        <rect x="456" y="152" fill="#F7931E" width="50" height="50" id="operation" onmouseover="displayInfo('operation');"/>
+                        <rect x="516" y="152" fill="#F7931E" width="50" height="50" id="parcheesi" onmouseover="displayInfo('parcheesi');"/>
+                        <rect x="576" y="152" fill="#F7931E" width="50" height="50" id="risk" onmouseover="displayInfo('risk');"/>
+                        <rect x="636" y="152" fill="#F7931E" width="50" height="50" id="scattergories" onmouseover="displayInfo('scattergories');"/>
+                        <rect x="696" y="152" fill="#F7931E" width="50" height="50" id="skipbo" onmouseover="displayInfo('skipbo');"/>
+                        <rect x="756" y="152" fill="#FFFF00" width="50" height="50" id="bananagrams" onmouseover="displayInfo('bananagrams');"/>
+                        <rect x="816" y="152" fill="#FFFF00" width="50" height="50" id="battleOfTheSexes" onmouseover="displayInfo('battleOfTheSexes');"/>
+                        <rect x="876" y="152" fill="#FFFF00" width="50" height="50" id="boggle" onmouseover="displayInfo('boggle');"/>
+                        <rect x="36" y="212" fill="#FFFF00" width="50" height="50"  id="factOrCrap" onmouseover="displayInfo('factOrCrap');"/>
+                        <rect x="96" y="212" fill="#FFFF00" width="50" height="50"  id="jenga" onmouseover="displayInfo('jenga');"/>
+                        <rect x="156" y="212" fill="#FFFF00" width="50" height="50" id="monopoly" onmouseover="displayInfo('monopoly');"/>
+                        <rect x="216" y="212" fill="#00FF00" width="50" height="50" id="familyFeud" onmouseover="displayInfo('familyFeud');"/>
+                        <rect x="276" y="212" fill="#22B573" width="50" height="50" id="applesToApples" onmouseover="displayInfo('applesToApples');"/>
+                        <rect x="336" y="212" fill="#22B573" width="50" height="50" id="dominos" onmouseover="displayInfo('dominos');"/>
+                        <rect x="396" y="212" fill="#22B573" width="50" height="50" id="uno" onmouseover="displayInfo('uno');"/>
+                        <rect x="456" y="212" fill="#22B573" width="50" height="50" id="yahtzee" onmouseover="displayInfo('yahtzee');"/>
+                        <rect x="516" y="212" fill="#29ABE2" width="50" height="50" id="gameOfThings" onmouseover="displayInfo('gameOfThings');"/>
+                        <rect x="576" y="212" fill="#00FFFF" width="50" height="50" id="catchPhrase" onmouseover="displayInfo('catchPrase');"/>
+                        <rect x="636" y="212" fill="#00FFFF" width="50" height="50" id="cranium" onmouseover="displayInfo('cranium');"/>
+                        <rect x="696" y="212" fill="#00FFFF" width="50" height="50" id="pictionary" onmouseover="displayInfo('pictionary');"/>
+                        <rect x="756" y="212" fill="#0000FF" width="50" height="50" id="mao" onmouseover="displayInfo('mao');"/>
+                        <rect x="816" y="212" fill="#662D91" width="50" height="50" id="trivalPursuit" onmouseover="displayInfo('trivialPursuit');"/>
+                        <rect x="876" y="212" fill="#93278F" width="50" height="50" id="cardsAgainstHumanity" onmouseover="displayInfo('cardsAgainstHumanity');"/>
+                        
+                        <rect x="300" y="311" fill="#FF00FF" width="25" height="25"/>
+                        <rect x="330" y="311" fill="#FF0000" width="25" height="25"/>		
+                        <rect x="360" y="311" fill="#F7931E" width="25" height="25"/>		
+                        <rect x="390" y="311" fill="#FFFF00" width="25" height="25"/>		
+                        <rect x="420" y="311" fill="#00FF00" width="25" height="25"/>
+                        <rect x="450" y="311" fill="#22B573" width="25" height="25"/>
+                        <rect x="480" y="311" fill="#29ABE2" width="25" height="25"/>
+                        <rect x="510" y="311" fill="#00FFFF" width="25" height="25"/>
+                        <rect x="540" y="311" fill="#0000FF" width="25" height="25"/>
+                        <rect x="570" y="311" fill="#662D91" width="25" height="25"/>
+                        <rect x="600" y="311" fill="#93278F" width="25" height="25"/>
+                        
+                        <text text font-size="15pt" x="45" y="330" font-size="15pt">Number of Players Allowed:</text>
+                        <text x="308" y="330" fill="#FFFFFF"  font-size="15">2</text>
+                        <text x="338" y="330" fill="#FFFFFF" font-size="15">4</text>
+                        <text x="368" y="330" fill="#FFFFFF"  font-size="15">6</text>
+                        <text x="398" y="330"  font-size="15">8</text>
+                        <text x="428" y="330"  font-size="15">9</text>
+                        <text x="453" y="330" fill="#FFFFFF"  font-size="15">10</text>
+                        <text x="483" y="330"fill="#FFFFFF"  font-size="15">15</text>
+                        <text x="513" y="330"   font-size="15">16</text>
+                        <text x="544" y="330" fill="#FFFFFF"  font-size="15">20</text>
+                        <text x="574" y="330" fill="#FFFFFF"  font-size="15">24</text>
+                        <text x="604" y="330" fill="#FFFFFF"  font-size="15">30</text>
+        
+        
+                </g>
+            </svg>
+        </div>
+        
+        <div id="timeSVG" style="position: absolute; top:50px; left:0px; visibility: hidden;">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="960" height="366.6" xml:space="preserve">
+                <g>
+                        <image overflow="visible" opacity="0.5" width="907" height="76" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAABMCAYAAADEFiLyAAAACXBIWXMAAAsSAAALEgHS3X78AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABUtJREFUeNrs3Wtr20gUgOGxY8dpaUPZhf7/P7hL6SU3X7QaOLMeTyXHXZZmDM8DhyayLEP66WVGckoAAADQWPym9wAAAPC2hv8z/BZnzhWNAAAA1xeJwyUBuXolEhcTIxQBAACuMxiHZmajcTUTimWWE9OGIwAAAH2HYpnDxAxTwbg6E4o3MatqyrFlsi0VAACg1zhsf89RuI/ZVVOO/fTeuZXFEom3MZuYdRWNbTCKRQAAgL5isQ7FHIfbcZ5jXmJSvD67slhvPb2JSLwb53017+L4Os6xHRUAAKDfaBwiBLcRho/jPFRTn3eyHXVqG+oyHVcVcyDeV/MhgnGTTlcXBSMAAEB/oVhWFZ8jFL+P87VqwfJ6e//i2VjcVLH45zh/jPMpgjGvOK7T8aE3AAAA9KUEYF5VfIpQ/BItl5Vtqdv4+WQRcG4bahuLORQ/RzTex/GyumhlEQAAoC/1FtS8qpi3nOYVxdt4vQRkmXrX6NltqDdRm3nLaV5J/BSh+DkdVxc38X6xCAAA0Gcs7iIW86riXbyW7138Mc63dHwezU/feLGqIrEOxvppqCUY76to/BgfJBYBAAD6jsW8criJ408RieXhpeXbLtomHOa+Z7FeXdyk41NRP0QofoyLr9L0dy4CAADwtrF4iFgs9yg+R9fdpeNXI84+uLS9Z3EqGOtoLOH4Lp0+5CYJRgAAgG5CMaXjw21S/LtpInEqFGfvWUxNPJZoLOG4qmadrCwCAAD0GoyH+HlXddxN1XhnbylcvfIBdTAuJgJyKRYBAAC6jMU0EYaLS0LxklhM6eftqYuZYwAAAPTjtZY7a3nmoosLPxgAAIC+gzH9avst/e0AAAAQiwAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAIBYBAAAQiwAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAgFgEAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAACxCAAAgFgEAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAADEIgAAAGIRAAAAsQgAAIBYBAAAQCwCAAAgFgEAABCLAAAAiEUAAACuJxaHmHMGfz4AAICuXdJ1k+esfuHiQzOXRiUAAAC/PxJfa7mzVhd+wKG5+KGabOH/AgAAoKtYrLttmOm7/xSLbRjux9lVs43zloIRAACgq1BM0XHbpuP2EwH5aiwOE5G4j8kf8BzzNM46zt1FLApFAACAvoLxEM32GB1Xmm5btV4bjcNULE6F4rYKxIdxvo+ziXO38f6FWAQAAOguFoeIxdxz36LnHqpw3M4E40ksDlXwDem45fQlKjRf9Os4d3HOc0SjWAQAAOg7Fp+j6b5E132PzntJx62pQ/PeyZXFelXxsbrobZyTK/R9xOKNWAQAAOg2FvcRiw8Rin9F35VgbFcX/7WauNihqs9ywXKPYi7PvHx5F8eWaf67GgEAAHg75UE2OQif0nEh8O/ovIfovl2a2Io6t7JYx2I5J3/Aj3HepeOqYnm4jZVFAACAfrTPo8l9V99iOBeL6ZJYfIk3p3R6U2TejrpOtqACAABcQzCW2wzLM2keqnm5JBbr7+LYx5vK72XZch3vqVcVC9EIAADQRyTWP5fG26XTr0V8iZl8Iupq5sL75ucSizczoSgWAQAA+ovFNhhLNJYpx9r3TAbeoprlxNSvAwAA0H881vcwtlO/fjYW6+OLiUlCEQAA4OqCsQ3HoTmeLonFqddtOwUAALjeUJz6fbgkBi8lEgEAAK4/GgEAAODX/CPAANT5i6kdrUyxAAAAAElFTkSuQmCC" transform="matrix(1 0 0 1 31 12.6146)"/>
+                        <rect x="36" y="17.6" fill="#DCDAD5" width="888" height="57"/>
+                        <image overflow="visible" opacity="0.5" width="907" height="84" xlink:href="data:image/png;base64,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" transform="matrix(1 0 0 1 32 271.6146)"/>
+                        <rect x="37" y="276.6" fill="#DCDAD5" width="888" height="65"/>
+                        <text x="40" y="60"  font-size="36">Board Games by Playing Time</text>
+                        
+                        <rect x="36" y="93.6" fill="#FF00FF" width="50" height="50" id="boggle" onmouseover="displayInfo('boggle');"/>
+                        <rect x="96" y="93.6" fill="#FF00FF" width="50" height="50" id="hiHoCheryO" onmouseover="displayInfo('hiHoCherryO');"/>
+                        <rect x="156" y="93.6" fill="#FF00FF" width="50" height="50" id="hungryHungryHippos" onmouseover="displayInfo('hungryHungryHippos');"/>
+                        <rect x="216" y="93.6" fill="#FF00FF" width="50" height="50" id="mancala"  onmouseover="displayInfo('mancala');"/>
+                        <rect x="276" y="93.6" fill="#FF00FF" width="50" height="50" id="operation" onmouseover="displayInfo('operation');"/>
+                        <rect x="336" y="93.6" fill="#FF00FF" width="50" height="50" id="twister" onmouseover="displayInfo('twister');"/>
+                        <rect x="396" y="93.6" fill="#FF0000" width="50" height="50" id="bananagrams" onmouseover="displayInfo('bananagrams');"/>
+                        <rect x="456" y="93.6" fill="#FF0000" width="50" height="50" id="connect4" onmouseover="displayInfo('connect4');"/>
+                        <rect x="516" y="93.6" fill="#F7931E" width="50" height="50" id="guessWho" onmouseover="displayInfo('guessWho');"/>
+                        <rect x="576" y="93.6" fill="#F7931E" width="50" height="50" id="jenga" onmouseover="displayInfo('jenga');"/>
+                        <rect x="636" y="93.6" fill="#F7931E" width="50" height="50" id="skipbo" onmouseover="displayInfo('skipbo');"/>
+                        <rect x="696" y="93.6" fill="#FFFF00" width="50" height="50" id="applesToApples" onmouseover="displayInfo('applesToApples');"/>
+                        <rect x="756" y="93.6" fill="#FFFF00" width="50" height="50" id="backgammon" onmouseover="displayInfo('backgammon');"/>
+                        <rect x="816" y="93.6" fill="#FFFF00" width="50" height="50" id="battleship" onmouseover="displayInfo('battleship');"/>
+                        <rect x="876" y="93.6" fill="#FFFF00" width="50" height="50" id="candyland" onmouseover="displayInfo('candyland');"/>
+                        <rect x="36" y="153.6" fill="#FFFF00" width="50" height="50" id="cardsAgainstHumanity" onmouseover="displayInfo('cardsAgainstHumanity');"/>
+                        <rect x="96" y="153.6" fill="#FFFF00" width="50" height="50" id="catchPhrase" onmouseover="displayInfo('catchPrase');"/>
+                        <rect x="156" y="153.6" fill="#FFFF00" width="50" height="50" id="checkers" onmouseover="displayInfo('checkers');"/>
+                        <rect x="216" y="153.6" fill="#FFFF00" width="50" height="50" id="chutesAndLadders" onmouseover="displayInfo('chutesAndLadders');"/>
+                        <rect x="276" y="153.6" fill="#FFFF00" width="50" height="50" id="cribbage" onmouseover="displayInfo('cribbage');"/>
+                        <rect x="336" y="153.6" fill="#FFFF00" width="50" height="50" id="dominos" onmouseover="displayInfo('dominos');"/>
+                        <rect x="396" y="153.6" fill="#FFFF00" width="50" height="50" id="factOrCrap" onmouseover="displayInfo('factOrCrap');"/>
+                        <rect x="456" y="153.6" fill="#FFFF00" width="50" height="50" id="familyFeud"  onmouseover="displayInfo('familyFeud');"/>
+                        <rect x="516" y="153.6" fill="#FFFF00" width="50" height="50" id="mousetrap" onmouseover="displayInfo('mousetrap');"/>
+                        <rect x="576" y="153.6" fill="#FFFF00" width="50" height="50" id="parcheesi" onmouseover="displayInfo('parcheesi');"/>
+                        <rect x="636" y="153.6" fill="#FFFF00" width="50" height="50" id="scattergories" onmouseover="displayInfo('scattergories');"/>
+                        <rect x="696" y="153.6" fill="#FFFF00" width="50" height="50" id="sorry" onmouseover="displayInfo('sorry');"/>
+                        <rect x="756" y="153.6" fill="#FFFF00" width="50" height="50" id="uno" onmouseover="displayInfo('uno');"/>
+                        <rect x="816" y="153.6" fill="#FFFF00" width="50" height="50" id="yahtzee" onmouseover="displayInfo('yahtzee');"/>
+                        <rect x="876" y="153.6" fill="#00FF00" width="50" height="50" id="battleOfTheSexes" onmouseover="displayInfo('battleOfTheSexes');"/>
+                        <rect x="36" y="213.6" fill="#00FF00" width="50" height="50" id="clue" onmouseover="displayInfo('clue');"/>
+                        <rect x="96" y="213.6" fill="#00FF00" width="50" height="50" id="gameOfThings" onmouseover="displayInfo('gameOfThings');"/>
+                        <rect x="156" y="213.6" fill="#00FF00" width="50" height="50" id="pandemic" onmouseover="displayInfo('pandemic');"/>
+                        <rect x="216" y="213.6" fill="#00FF00" width="50" height="50" id="rackO" onmouseover="displayInfo('rackO');"/>
+                        <rect x="276" y="213.6" fill="#00FF00" width="50" height="50" id="stratego" onmouseover="displayInfo('stratego');"/>
+                        <rect x="336" y="213.6" fill="#00FF00" width="50" height="50" id="trouble" onmouseover="displayInfo('trouble');"/>
+                        <rect x="396" y="213.6" fill="#22B573" width="50" height="50" id="chess" onmouseover="displayInfo('chess');"/>
+                        <rect x="456" y="213.6" fill="#22B573" width="50" height="50" id="cranium" onmouseover="displayInfo('cranium');"/>
+                        <rect x="516" y="213.6" fill="#22B573" width="50" height="50" id="gameOfLife" onmouseover="displayInfo('gameOfLife');"/>
+                        <rect x="576" y="213.6" fill="#22B573" width="50" height="50" id="mao" onmouseover="displayInfo('mao');"/>
+                        <rect x="636" y="213.6" fill="#00FFFF" width="50" height="50" id="pictionary" onmouseover="displayInfo('pictionary');"/>
+                        <rect x="696" y="213.6" fill="#00FFFF" width="50" height="50" id="scrabble" onmouseover="displayInfo('scrabble');"/>
+                        <rect x="756" y="213.6" fill="#00FFFF" width="50" height="50" id="trivalPursuit" onmouseover="displayInfo('trivialPursuit');"/>
+                        <rect x="816" y="213.6" fill="#0000FF" width="50" height="50" id="risk" onmouseover="displayInfo('risk');"/>
+                        <rect x="876" y="213.6" fill="#662D91" width="50" height="50" id="monopoly" onmouseover="displayInfo('monopoly');"/>
+ 
+                        <rect x="275" y="311" fill="#FF00FF" width="25" height="25"/>
+                        <rect x="305" y="311" fill="#FF0000" width="25" height="25"/>
+                        <rect x="335" y="311" fill="#F7931E" width="25" height="25"/>		
+                        <rect x="365" y="311" fill="#FFFF00" width="25" height="25"/>
+                        <rect x="395" y="311" fill="#00FF00" width="25" height="25"/>
+                        <rect x="425" y="311" fill="#22B573" width="25" height="25"/>
+                        <rect x="455" y="311" fill="#00FFFF" width="25" height="25"/>
+                        <rect x="485" y="311" fill="#0000FF" width="25" height="25"/>
+                        <rect x="515" y="311" fill="#662D91" width="25" height="25"/>
+                                               
+                        <text  x="45" y="330" font-size="15pt">Playing Time (in minutes):</text>
+                        <text  x="279" y="330" fill="#FFFFFF"  font-size="15">10</text>
+                        <text  x="309" y="330" fill="#FFFFFF" font-size="15">15</text>
+                        <text  x="339" y="330" font-size="15">20</text>
+                        <text  x="369" y="330"   font-size="15">30</text>
+                        <text  x="399" y="330"  font-size="15">45</text>
+                        <text  x="429" y="330" fill="#FFFFFF"  font-size="15">60</text>
+                        <text  x="459" y="330"  font-size="15">90</text>
+                        <text  x="485" y="330"fill="#FFFFFF"  font-size="15">120</text>
+                        <text  x="515" y="330" fill="#FFFFFF"  font-size="15">180</text>
+                </g>	
+            </svg>
+        </div>
+        
+        <div id="ageSVG" style="position: absolute; top:50px; left:0px; visibility: hidden;">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="960" height="366.6" xml:space="preserve">
+                <g>
+                        <image overflow="visible" opacity="0.5" width="907" height="75" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA4sAAABLCAYAAADZExJKAAAACXBIWXMAAAsSAAALEgHS3X78AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABUdJREFUeNrs3W1r20gUgNGxY8dJaUPZhf7/P7hLadM0iV+0GrizHk8kx1mWdgLnwKWJLMuQfnqYkZwSAAAANBa/6D0AAAD8XsP/GX6LM+eKRgAAgPcXicMlAbl6JRIXEyMUAQAA3mcwDs3MRuNqJhTLLCemDUcAAAD6DsUyh4kZpoJxdSYUr2JW1ZRjy2RbKgAAQK9x2P6eo3Afs6umHHvx3rmVxRKJ1zGbmHUVjW0wikUAAIC+YrEOxRyH23GeYp5jUrw+u7JYbz29iki8GedDNbdxfB3n2I4KAADQbzQOEYLbCMOf4zxUU593sh11ahvqMh1XFXMg3lXzMYJxk05XFwUjAABAf6FYVhWfIhTvx/lWtWB5vb1/8WwsbqpY/HOcP8b5HMGYVxzX6fjQGwAAAPpSAjCvKj5GKH6NlsvKttRt/HyyCDi3DbWNxRyKXyIa7+J4WV20sggAANCXegtqXlXMW07ziuJ1vF4Csky9a/TsNtSrqM285TSvJH6OUPySjquLm3i/WAQAAOgzFncRi3lV8SZey/cu/hjnezo+j+bFN16sqkisg7F+GmoJxrsqGj/FB4lFAACAvmMxrxxu4vhjRGJ5eGn5tou2CYe571msVxc36fhU1I8Rip/i4qs0/Z2LAAAA/N5YPEQslnsUn6LrbtLxqxFnH1za3rM4FYx1NJZwvE2nD7lJghEAAKCbUEzp+HCbFP9umkicCsXZexZTE48lGks4rqpZJyuLAAAAvQbjIX7eVR13VTXe2VsKV698QB2Mi4mAXIpFAACALmMxTYTh4pJQvCQWU3q5PXUxcwwAAIB+vNZyZy3PXHRx4QcDAADQdzCmt7bf0t8OAAAAsQgAAIBYBAAAQCwCAAAgFgEAABCLAAAAiEUAAADEIgAAAGIRAAAAsQgAAIBYBAAAQCwCAAAgFgEAABCLAAAAiEUAAADEIgAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAIBYBAAAQiwAAAIhFAAAAxCIAAABiEQAAALEIAACAWAQAAEAsAgAAIBYBAABALAIAACAWAQAAEIsAAACIRQAAAMQiAAAAYhEAAACxCAAAQLexOMScM/jzAQAAdO2Srps8Z/WGiw/NXBqVAAAA/PpIfK3lzlpd+AGH5uKHarKF/wsAAICuYrHutmGm7/5TLLZhuB9nV802zlsKRgAAgK5CMUXHbZuO208E5KuxOExE4j4mf8BTzOM46zh3F7EoFAEAAPoKxkM028/ouNJ026r12mgcpmJxKhS3VSA+jHM/zibO3cb7F2IRAACgu1gcIhZzz32PnnuownE7E4wnsThUwTek45bT56jQfNFv49zEOU8RjWIRAACg71h8iqb7Gl13H533nI5bU4fmvZMri/Wq4s/qotdxTq7QDxGLV2IRAACg21jcRyw+RCj+FX1XgrFdXfzXauJih6o+ywXLPYq5PPPy5U0cW6b572oEAADg9ykPsslB+JiOC4F/R+c9RPft0sRW1LmVxToWyzn5A36Mc5uOq4rl4TZWFgEAAPrRPo8m9119i+FcLKZLYvE53pzS6U2ReTvqOtmCCgAA8B6CsdxmWJ5J81DN8yWxWH8Xxz7eVH4vy5breE+9qliIRgAAgD4isf65NN4unX4t4nPM5BNRVzMX3jc/l1i8mglFsQgAANBfLLbBWKKxTDnWvmcy8BbVLCemfh0AAID+47G+h7Gd+vWzsVgfX0xMEooAAADvLhjbcBya4+mSWJx63bZTAACA9xuKU78Pl8TgpUQiAADA+49GAAAAeJt/BBgAE8yLpwmstNQAAAAASUVORK5CYII=" transform="matrix(1 0 0 1 31 12.6146)"/>
+                        <rect x="36" y="16.6" fill="#DCDAD5" width="888" height="57"/>
+                        <image overflow="visible" opacity="0.5" width="907" height="83" xlink:href="data:image/png;base64,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" transform="matrix(1 0 0 1 32 271.6146)"/>
+                        <rect x="37" y="275.6" fill="#DCDAD5" width="888" height="65"/>
+                        <text x="40" y="60"  font-size="36">Board Games by Target Age</text>
+                        
+                        <rect x="36" y="92.6" fill="#FF00FF" width="50" height="50" id="candyland" onmouseover="displayInfo('candyland');"/>
+                        <rect x="96" y="92.6" fill="#FF00FF" width="50" height="50" id="chutesAndLadders" onmouseover="displayInfo('chutesAndLadders');"/>
+                        <rect x="156" y="92.6" fill="#FF00FF" width="50" height="50" id="hiHoCheryO" onmouseover="displayInfo('hiHoCherryO');"/>
+                        <rect x="216" y="92.6" fill="#FF00FF" width="50" height="50" id="hungryHungryHippos" onmouseover="displayInfo('hungryHungryHippos');"/>
+                        <rect x="276" y="92.6" fill="#FF0000" width="50" height="50" id="guessWho" onmouseover="displayInfo('guessWho');"/>
+                        <rect x="336" y="92.6" fill="#FF0000" width="50" height="50" id="parcheesi" onmouseover="displayInfo('parcheesi');"/>
+                        <rect x="396" y="92.6" fill="#FF0000" width="50" height="50" id="sorry" onmouseover="displayInfo('sorry');"/>
+                        <rect x="456" y="92.6" fill="#F7931E" width="50" height="50" id="dominos" onmouseover="displayInfo('dominos');"/>
+                        <rect x="516" y="92.6" fill="#F7931E" width="50" height="50" id="mancala" onmouseover="displayInfo('mancala');"/>
+                        <rect x="576" y="92.6" fill="#F7931E" width="50" height="50" id="trouble" onmouseover="displayInfo('trouble');"/>
+                        <rect x="636" y="92.6" fill="#FFFF00" width="50" height="50" id="checkers" onmouseover="displayInfo('checkers');"/>
+                        <rect x="696" y="92.6" fill="#FFFF00" width="50" height="50" id="chess" onmouseover="displayInfo('chess');"/>
+                        <rect x="756" y="92.6" fill="#FFFF00" width="50" height="50" id="connect4" onmouseover="displayInfo('connect4');"/>
+                        <rect x="816" y="92.6" fill="#FFFF00" width="50" height="50" id="gameOfLife" onmouseover="displayInfo('gameOfLife');"/>
+                        <rect x="876" y="92.6" fill="#FFFF00" width="50" height="50" id="jenga" onmouseover="displayInfo('jenga');"/>
+                        <rect x="36" y="152.6" fill="#FFFF00" width="50" height="50" id="mousetrap" onmouseover="displayInfo('mousetrap');"/>
+                        <rect x="96" y="152.6" fill="#FFFF00" width="50" height="50" id="operation" onmouseover="displayInfo('operation');"/>
+                        <rect x="156" y="152.6" fill="#FFFF00" width="50" height="50" id="rackO" onmouseover="displayInfo('rackO');"/>
+                        <rect x="216" y="152.6" fill="#FFFF00" width="50" height="50" id="skipbo" onmouseover="displayInfo('skipbo');"/>
+                        <rect x="276" y="152.6" fill="#FFFF00" width="50" height="50" id="twister" onmouseover="displayInfo('twister');"/>
+                        <rect x="336" y="152.6" fill="#FFFF00" width="50" height="50" id="uno" onmouseover="displayInfo('uno');"/>
+                        <rect x="396" y="152.6" fill="#FFFF00" width="50" height="50" id="yahtzee" onmouseover="displayInfo('yahtzee');"/>
+                        <rect x="456" y="152.6" fill="#00FF00" width="50" height="50" id="backgammon" onmouseover="displayInfo('backgammon');"/>
+                        <rect x="516" y="152.6" fill="#00FF00" width="50" height="50" id="bananagrams" onmouseover="displayInfo('bananagrams');"/>
+                        <rect x="576" y="152.6" fill="#00FF00" width="50" height="50" id="battleship" onmouseover="displayInfo('battleship');" />
+                        <rect x="636" y="152.6" fill="#00FF00" width="50" height="50" id="catchPhrase" onmouseover="displayInfo('catchPrase');"/>
+                        <rect x="696" y="152.6" fill="#00FF00" width="50" height="50" id="clue" onmouseover="displayInfo('clue');"/>
+                        <rect x="756" y="152.6" fill="#00FF00" width="50" height="50" id="cribbage" onmouseover="displayInfo('cribbage');"/>
+                        <rect x="816" y="152.6" fill="#00FF00" width="50" height="50" id="familyFeud" onmouseover="displayInfo('familyFeud');"/>
+                        <rect x="876" y="152.6" fill="#00FF00" width="50" height="50" id="mao" onmouseover="displayInfo('mao');"/>
+                        <rect x="36" y="212.6" fill="#00FF00" width="50" height="50" id="monopoly" onmouseover="displayInfo('monopoly');"/>
+                        <rect x="96" y="212.6" fill="#00FF00" width="50" height="50" id="pandemic" onmouseover="displayInfo('pandemic');"/>
+                        <rect x="156" y="212.6" fill="#00FF00" width="50" height="50" id="pictionary" onmouseover="displayInfo('pictionary');"/>
+                        <rect x="216" y="212.6" fill="#00FF00" width="50" height="50" id="stratego" onmouseover="displayInfo('stratego');"/>
+                        <rect x="276" y="212.6" fill="#22B573" width="50" height="50" id="boggle" onmouseover="displayInfo('boggle');"/>
+                        <rect x="336" y="212.6" fill="#22B573" width="50" height="50" id="gameOfThings" onmouseover="displayInfo('gameOfThings');"/>
+                        <rect x="396" y="212.6" fill="#22B573" width="50" height="50" id="risk" onmouseover="displayInfo('risk');"/>
+                        <rect x="456" y="212.6" fill="#22B573" width="50" height="50" id="scattergories" onmouseover="displayInfo('scattergories');"/>
+                        <rect x="516" y="212.6" fill="#22B573" width="50" height="50" id="scrabble" onmouseover="displayInfo('scrabble');"/>
+                        <rect x="576" y="212.6" fill="#00FFFF" width="50" height="50" id="applesToApples" onmouseover="displayInfo('applesToApples');"/>
+                        <rect x="636" y="212.6" fill="#00FFFF" width="50" height="50" id="battleOfTheSexes" onmouseover="displayInfo('battleOfTheSexes');"/>
+                        <rect x="696" y="212.6" fill="#00FFFF" width="50" height="50" id="factOrCrap" onmouseover="displayInfo('factOrCrap');"/>
+                        <rect x="756" y="212.6" fill="#00FFFF" width="50" height="50" id="trivialPursuit" onmouseover="displayInfo('trivialPursuit');"/>
+                        <rect x="816" y="212.6" fill="#0000FF" width="50" height="50" id="cranium" onmouseover="displayInfo('cranium');"/>
+                        <rect x="876" y="212.6" fill="#662D91" width="50" height="50" id="cardsAgainstHumanity" onmouseover="displayInfo('cardsAgainstHumanity');"/>
+                        
+<rect x="230" y="311" fill="#FF00FF" width="25" height="25"/>
+<rect x="260" y="311" fill="#FF0000" width="25" height="25"/>
+<rect x="290" y="311" fill="#F7931E" width="25" height="25"/>
+<rect x="320" y="311" fill="#FFFF00" width="25" height="25"/>
+<rect x="350" y="311" fill="#00FF00" width="25" height="25"/>
+<rect x="380" y="311" fill="#22B573" width="25" height="25"/>
+<rect x="410" y="311" fill="#0000FF" width="25" height="25"/>
+<rect x="440" y="311" fill="#00FFFF" width="25" height="25"/>
+<rect x="470" y="311" fill="#662D91" width="25" height="25"/>
+
+<text x="45" y="330"  font-size="15pt">Target Age(in years):</text>
+<text x="234" y="330" fill="#FFFFFF"  font-size="15">3+</text>
+<text x="264" y="330" fill="#FFFFFF" font-size="15">4+</text>
+<text x="294" y="330" fill="#FFFFFF"  font-size="15">5+</text>
+<text x="324" y="330" font-size="15">6+</text>
+<text x="354" y="330"   font-size="15">8+</text>
+<text x="380" y="330" fill="#FFFFFF"  font-size="15">10+</text>
+<text x="410" y="330" fill="#FFFFFF"  font-size="15">12+</text>
+<text x="440" y="330"   font-size="15">13+</text>
+<text x="470" y="330" fill="#FFFFFF"  font-size="15">16+</text>
+                </g>
+            </svg>
+        </div>
+        
+        
+        <script>
+            function loadSVG(id){
+                if(id == 'min'){
+                    document.getElementById('minSVG').style.visibility = 'visible';
+                    document.getElementById('maxSVG').style.visibility = 'hidden';
+                    document.getElementById('timeSVG').style.visibility = 'hidden';
+                    document.getElementById('ageSVG').style.visibility = 'hidden';
+                }else if(id =='max'){
+                    document.getElementById('minSVG').style.visibility = 'hidden';
+                    document.getElementById('maxSVG').style.visibility = 'visible';
+                    document.getElementById('timeSVG').style.visibility = 'hidden';
+                    document.getElementById('ageSVG').style.visibility = 'hidden';
+                }else if(id =='time'){
+                    document.getElementById('minSVG').style.visibility = 'hidden';
+                    document.getElementById('maxSVG').style.visibility = 'hidden';
+                    document.getElementById('timeSVG').style.visibility = 'visible';
+                    document.getElementById('ageSVG').style.visibility = 'hidden';
+                }else if(id =='age'){
+                    document.getElementById('minSVG').style.visibility = 'hidden';
+                    document.getElementById('maxSVG').style.visibility = 'hidden';
+                    document.getElementById('timeSVG').style.visibility = 'hidden';
+                    document.getElementById('ageSVG').style.visibility = 'visible';
+                }
+            }
+            
+            function displayInfo(id){
+                if(id == 'applesToApples'){
+                    document.getElementById('title').innerHTML="APPLES TO APPLES";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 4-10";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 12+";
+                    document.getElementById('tags').innerHTML="Tags: Card";
+                }else if(id == 'backgammon'){
+                    document.getElementById('title').innerHTML="BACKGAMMON";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy, Dice";
+                }else if(id == 'bananagrams'){
+                    document.getElementById('title').innerHTML="BANANAGRAMS";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 1-8";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 15mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Word";
+                }else if(id == 'battleOfTheSexes'){
+                    document.getElementById('title').innerHTML="BATTLE OF THE SEXES";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-8";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 45mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 12+";
+                    document.getElementById('tags').innerHTML="Tags: Party, Trivia";
+                }else if(id == 'battleship'){
+                    document.getElementById('title').innerHTML="BATTLESHIP";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Children";
+                }else if(id == 'boggle'){
+                    document.getElementById('title').innerHTML="BOGGLE";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 1-8";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 10mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 10+";
+                    document.getElementById('tags').innerHTML="Tags: Dice";
+                }else if(id == 'candyland'){
+                    document.getElementById('title').innerHTML="CANDYLAND";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 3-6";
+                    document.getElementById('tags').innerHTML="Tags: Children";
+                }else if(id == 'cardsAgainstHumanity'){
+                    document.getElementById('title').innerHTML="CARDS AGAINST HUMANITY";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 4-30";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 16+";
+                    document.getElementById('tags').innerHTML="Tags: Card";
+                }else if(id == 'catchPhrase'){
+                    document.getElementById('title').innerHTML="CATCH PHRASE";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 4-16";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Party, Word";
+                }else if(id == 'checkers'){
+                    document.getElementById('title').innerHTML="CHECKERS";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy";
+                }else if(id == 'chess'){
+                    document.getElementById('title').innerHTML="CHESS";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy";
+                }else if(id == 'chutesAndLadders'){
+                    document.getElementById('title').innerHTML="CHUTES AND LADDERS";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-6";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 3-8";
+                    document.getElementById('tags').innerHTML="Tags: Children";
+                }else if(id == 'clue'){
+                    document.getElementById('title').innerHTML="CLUE";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 3-6";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 45mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy, Guessing";
+                }else if(id == 'connect4'){
+                    document.getElementById('title').innerHTML="CONNECT 4";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 15mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy, Children";
+                }else if(id == 'cranium'){
+                    document.getElementById('title').innerHTML="CRANIUM";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 4-16";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 60mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 13+";
+                    document.getElementById('tags').innerHTML="Tags: Party, Trivia";
+                }else if(id == 'cribbage'){
+                    document.getElementById('title').innerHTML="CRIBBAGE";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Card";
+                }else if(id == 'dominos'){
+                    document.getElementById('title').innerHTML="DOMINOS";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-10";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 5+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy, Tile";
+                }else if(id == 'factOrCrap'){
+                    document.getElementById('title').innerHTML="FACT OR CRAP";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 3-8";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 12+";
+                    document.getElementById('tags').innerHTML="Tags: Card, Party, Trivia";
+                }else if(id == 'familyFeud'){
+                    document.getElementById('title').innerHTML="FAMILY FEUD";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-9";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Party";
+                }else if(id == 'gameOfThings'){
+                    document.getElementById('title').innerHTML="GAME OF THINGS";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 4-15";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 45mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 10+";
+                    document.getElementById('tags').innerHTML="Tags: Party";
+                }else if(id == 'guessWho'){
+                    document.getElementById('title').innerHTML="GUESS WHO";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 20mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 4-12";
+                    document.getElementById('tags').innerHTML="Tags: Guessing, Children";
+                }else if(id == 'hiHoCheryO'){
+                    document.getElementById('title').innerHTML="HI-HO CHERRY-O";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 10mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 3-5";
+                    document.getElementById('tags').innerHTML="Tags: Children";
+                }else if(id == 'hungryHungryHippos'){
+                    document.getElementById('title').innerHTML="HUNGRY HUNGY HIPPOS";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 10mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 3-8";
+                    document.getElementById('tags').innerHTML="Tags: Dexterity, Children";
+                }else if(id == 'jenga'){
+                    document.getElementById('title').innerHTML="JENGA";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-8";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 20mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6+";
+                    document.getElementById('tags').innerHTML="Tags: Dexterity";
+                }else if(id == 'gameOfLife'){
+                    document.getElementById('title').innerHTML="GAME OF LIFE";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-6";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 60mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6-12";
+                    document.getElementById('tags').innerHTML="Tags: Children";
+                }else if(id == 'mancala'){
+                    document.getElementById('title').innerHTML="MANCALA";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 10mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 5+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy";
+                }else if(id == 'mao'){
+                    document.getElementById('title').innerHTML="MAO";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 3-20";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 60mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Card, Party";
+                }else if(id == 'monopoly'){
+                    document.getElementById('title').innerHTML="MONOPOLY";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-8";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 180mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy";
+                }else if(id == 'mousetrap'){
+                    document.getElementById('title').innerHTML="MOUSE TRAP";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6+";
+                    document.getElementById('tags').innerHTML="Tags: Children";
+                }else if(id == 'operation'){
+                    document.getElementById('title').innerHTML="OPERATION";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 1-6";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 10mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Dexterity, Children";
+                }else if(id == 'pandemic'){
+                    document.getElementById('title').innerHTML="PANDEMIC";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 45mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy";
+                }else if(id == 'parcheesi'){
+                    document.getElementById('title').innerHTML="PARCHEESI";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-6";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 4+";
+                    document.getElementById('tags').innerHTML="Tags: Children, Dice";
+                }else if(id == 'pictonary'){
+                    document.getElementById('title').innerHTML="PICTIONARY";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 3-16";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 90mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Party";
+                }else if(id == 'rackO'){
+                    document.getElementById('title').innerHTML="RACK-O";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 45mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6+";
+                    document.getElementById('tags').innerHTML="Tags: Card";
+                }else if(id == 'risk'){
+                    document.getElementById('title').innerHTML="RISK";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-6";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 120mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 10+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy";
+                }else if(id == 'scattergories'){
+                    document.getElementById('title').innerHTML="SCATTERGORIES";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-6";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 10+";
+                    document.getElementById('tags').innerHTML="Tags: Party";
+                }else if(id == 'scrabble'){
+                    document.getElementById('title').innerHTML="SCRABBLE";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 90mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 10+";
+                    document.getElementById('tags').innerHTML="Tags: Word";
+                }else if(id == 'skipbo'){
+                    document.getElementById('title').innerHTML="SKIPBO";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-6";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 20mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6+";
+                    document.getElementById('tags').innerHTML="Tags: Card";
+                }else if(id == 'sorry'){
+                    document.getElementById('title').innerHTML="SORRY";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 4+";
+                    document.getElementById('tags').innerHTML="Tags: Children";
+                }else if(id == 'stratego'){
+                    document.getElementById('title').innerHTML="STRATEGO";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 45mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 8+";
+                    document.getElementById('tags').innerHTML="Tags: Stategy";
+                }else if(id == 'trivialPursuit'){
+                    document.getElementById('title').innerHTML="TRIVIAL PURSUIT";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-24";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 90mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 12+";
+                    document.getElementById('tags').innerHTML="Tags: Party, Trivia";
+                }else if(id == 'trouble'){
+                    document.getElementById('title').innerHTML="TROUBLE";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 45mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 5+";
+                    document.getElementById('tags').innerHTML="Tags: Children, Dice";
+                }else if(id == 'twister'){
+                    document.getElementById('title').innerHTML="TWISTER";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-4";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 10mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6-18";
+                    document.getElementById('tags').innerHTML="Tags: Dexterity, Children, Party";
+                }else if(id == 'uno'){
+                    document.getElementById('title').innerHTML="UNO";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-10";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6+";
+                    document.getElementById('tags').innerHTML="Tags: Card";
+                }else if(id == 'yahtzee'){
+                    document.getElementById('title').innerHTML="YAHTZEE";
+                    document.getElementById('players').innerHTML="Suggested Number of Players: 2-10";
+                    document.getElementById('gameTime').innerHTML="Estimated Time Required for Playing: 30mins";
+                    document.getElementById('age').innerHTML="Suggested Ages: 6+";
+                    document.getElementById('tags').innerHTML="Tags: Children, Dice";
+                }
+            
+            }
+        </script>
+        
+        <div id="gameInfo" style="position: absolute; top: 70px; left: 960px; width: 300px; height: 300px; border: outset; background-image: url('sticky.png'); background-position: center;">
+            <p id="title" style="font-weight: bold; font-size:15pt; border-bottom: solid; margin-top: 27pt;"></p>
+            <p id="players"></p>
+            <p id="gameTime"></p>
+            <p id="age"></p>
+            <p id="tags"></p>
+        </div>
+        <div id="readme" style="position: absolute; top:425px; left: -10px;">
+            <p style="font-weight: bold;">ReadMe</p>
+            <p>
+            For this project, since the suggested topic was games I thought I would do something related to them but I couldn't think of any games that I could collect
+            data from and then predict stuff so instead I did some research on some classic board games, as well as some more current ones. Originally when I came up with this
+            idea I had planned to compare what the creators intended vs. reality. For example, the creator usually has an idea of how long the game will take to play and typically
+            this information is included in the instructions. However, this intended time does not always prove to be true, especially in situations like Monopoly. The intented time
+            for this game is roughly 2 hours but I have definitly played for less and more time than that. Usually someone gets angry and flips the board or something wayyy before
+            2 hours or in the rare case that everyone is mature the game can literally last forever. I have never actually witnessed a game finish the way the creater intended, in my
+            experience someone is always bitter about losing properties to the roll of the dice. ANYWAY, to do these comparisons would require playing all of these games and I simply
+            did not have time to do that. Therefore, I thought it would be interesting to visualization the demographics related to board/card games. 
+            <br><br>Understanding the visualization. When designing the visualization I thought it would be fun to make it resemble a game board. Colored squares are a popular design
+            aspect of board games--something else I learned doing this project--they are often used to represent the spaces. I created visualizations based on 4 different filters. The
+            first is the minimum number of players required to play each game. The second is the maximum number of players allowed for each game. The third is based on the creaters
+            intended play time. The last filter relates to the age demographic the game is target for. While doing this research I learned that the most games are created for 2-4
+            players, intended to last no more than 30 minutes and are targeted for ages 6 and up. 
+            <br><br>For each game I included the information I found. If you hover over the square on the right the sticky note will populate with the information of the game that square
+            represents. Another feature that I did not end up including is filtering the games by different categories or tags but I still included this information on the right in the
+            sticky note. 
+             <br><br>
+            <strong>Sources:</strong> <br>Game instructions (I have a lot of these games--which is why these were the games that I decided to include). <br>I also used http://boardgamegeek.com/ to
+            retrieve any information I couldn't get from the instructions and also just to have more than one source.</p>
+            <br>
+        </div>
+        
+    </body>
+<html>
